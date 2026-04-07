@@ -9,9 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build
-        run: docker compose build
-
       - name: Test
         run: docker compose run --rm app python manage.py test
 
