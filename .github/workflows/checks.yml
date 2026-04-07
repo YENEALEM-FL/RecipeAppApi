@@ -18,6 +18,11 @@ jobs:
       - name: Lint
         run: docker compose run --rm app flake8
 
+      - name: Install mailutils
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mailutils
+
       - name: Send Email
         if: always()
         run: |
