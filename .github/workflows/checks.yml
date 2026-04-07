@@ -21,4 +21,4 @@ jobs:
       - name: Send Email
         if: always()
         run: |
-          echo "Workflow finished" | mail -s "GitHub Action Status" yenealemn@gmail.com
+          echo "Workflow finished" | mail -s "GitHub Action Status: " yenealemn@gmail.com
