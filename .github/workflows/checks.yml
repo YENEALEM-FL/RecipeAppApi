@@ -23,7 +23,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y mailutils
 
-      - name: Send Email
-        if: always()
+      - name: Send Telegram Notification
         run: |
-          echo "Workflow finished" | mail -s "GitHub Action Status" yenealemn@gmail.com
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" \
+          -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+          -d text="🚀 New push by ${{ github.actor }} on ${{ github.ref }}
+Commit: ${{ github.event.head_commit.message }}"
