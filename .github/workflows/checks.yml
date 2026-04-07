@@ -9,8 +9,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build
+        run: docker compose build
+
       - name: Test
         run: docker compose run --rm app python manage.py test
 
       - name: Lint
         run: docker compose run --rm app flake8
+
+      - name: Send Email
+        if: always()
+        run: |
+          echo "Workflow finished" | mail -s "GitHub Action Status" yenealemn@gmail.com
