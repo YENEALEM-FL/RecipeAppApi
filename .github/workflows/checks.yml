@@ -17,21 +17,3 @@ jobs:
 
       - name: Lint
         run: docker compose run --rm app flake8
-
-      - name: Notify Telegram
-        if: always()
-        run: |
-          STATUS="${{ job.status }}"
-          [ "$STATUS" == "success" ] && ICON="✅" || ICON="❌"
-
-          TEXT=$(cat <<EOF
-          ${ICON} Build ${STATUS^^}
-          Repo: ${{ github.repository }}
-          User: ${{ github.actor }}
-          Commit: ${{ github.event.head_commit.message }}
-          EOF
-          )
-
-          curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" \
-            --data-urlencode "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
-            --data-urlencode "text=${TEXT}"
