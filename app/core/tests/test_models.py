@@ -1,9 +1,12 @@
 """
 Tests for models.
 """
+from decimal import Decimal
+
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+from core import models
 
 class ModelTests(TestCase):
     """Test models."""
@@ -53,7 +56,7 @@ class ModelTests(TestCase):
             'test@example.com',
             'testpass123',
         )
-        recipe = models.Recipe.objets.create(
+        recipe = models.Recipe.objects.create(
             user=user,
             title='Sample recipe name',
             time_minutes=5,
