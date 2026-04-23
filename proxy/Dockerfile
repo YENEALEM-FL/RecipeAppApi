@@ -1,4 +1,4 @@
-From nginxinc/nginx-unprivileged:1-1lpine
+FROM nginxinc/nginx-unprivileged:1-alpine
 LABEL maintainer="zedeveloperapp.com"
 
 COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
@@ -13,7 +13,7 @@ USER root
 
 RUN mkdir -p /vol/static && \
     chmod 755 /vol/static && \
-    touch /etc/nginx/conf.d/defaulut.conf && \
+    touch /etc/nginx/conf.d/default.conf && \
     chown nginx:nginx /etc/nginx/conf.d/default.conf && \
     chmod +x /run.sh
 

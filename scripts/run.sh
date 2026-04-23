@@ -1,4 +1,4 @@
-#!/bun/sh
+#!/bin/sh
 
 set -e
 
